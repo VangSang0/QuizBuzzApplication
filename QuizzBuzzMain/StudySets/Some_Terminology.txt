@@ -1,0 +1,20 @@
+Algorithm,A step-by-step procedure for solving a problem or performing a task.
+Polymorphism,The ability of different objects to respond uniquely to the same function call.
+Encapsulation,The bundling of data and the methods that operate on that data within a single unit.
+Abstraction,The process of simplifying complex systems by focusing on the main idea and ignoring specific details.
+Iteration,The process of repeating a set of instructions until a specific condition is met.
+Syntax,The set of rules that defines the structure of a programming language.
+Inheritance,The mechanism by which one class can acquire the properties and methods of another.
+Queue,A collection of elements that follows the First In, First Out (FIFO) principle.
+Recursion,A programming technique where a function calls itself to solve a problem.
+Stack,A collection of elements that follows the Last In, First Out (LIFO) principle.
+Variable,A symbolic name associated with a value and whose value may change during program execution.
+Array,A collection of elements identified by index or key and stored in contiguous memory locations.
+Constructor,A special method used to initialize objects of a class.
+Exception,A problem or error that occurs during the execution of a program.
+Interface,A contract in programming that defines the methods a class must implement.
+Delegate,A type that represents references to methods in C# and is used to pass methods as arguments.
+Compilation,The process of translating source code written in a high-level programming language into machine code.
+Immutable,An object whose state cannot be modified after it is created.
+Overloading,The ability to define multiple methods with the same name but different parameters.
+Debugging,The process of finding and resolving errors or bugs in a program.

@@ -13,7 +13,7 @@ namespace QuizzBuzzMain.Utilities
 
         public StudySetManager()
         {
-            StudySetsDirectory = @"C:\Users\vangs\Documents\3112\QuizBuzzApplication\QuizzBuzzMain\StudySets\"; // Path to the study sets directory from Sang's Personal Computer
+            StudySetsDirectory = @"C:\Users\vangs\Documents\ITCS3112\QuizBuzz\QuizBuzzApplication\QuizzBuzzMain\StudySets\"; // Path to the study sets directory from Sang's Personal Computer
 
             //Arbitrary path to the study sets directory
             //StudySetsDirectory = Path.Combine(
@@ -89,7 +89,6 @@ namespace QuizzBuzzMain.Utilities
         {
             try
             {
-                // Ensure new file name doesn't already exist
                 string oldFullPath = Path.Combine(StudySetsDirectory, oldFileName);
                 string newFullPath = Path.Combine(StudySetsDirectory, newFileName);
 
@@ -110,6 +109,26 @@ namespace QuizzBuzzMain.Utilities
             catch (Exception ex)
             {
                 throw new Exception($"Error renaming study set: {ex.Message}", ex);
+            }
+        }
+
+        public Dictionary<string, string> LoadStudySetContent(string filename)
+        {
+            try
+            {
+                string fullPath = Path.Combine(StudySetsDirectory, filename);
+                string[] lines = File.ReadAllLines(fullPath);
+                Dictionary<string, string> studySetContent = new Dictionary<string, string>();
+                foreach (string line in lines)
+                {
+                    string[] parts = line.Split(',');
+                    studySetContent.Add(parts[0], parts[1]);
+                }
+                return studySetContent;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error loading study set: {ex.Message}", ex);
             }
         }
     }

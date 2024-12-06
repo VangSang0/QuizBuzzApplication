@@ -39,9 +39,10 @@
             // 
             // MainMenuButton
             // 
-            MainMenuButton.Location = new Point(12, 40);
+            MainMenuButton.Location = new Point(14, 53);
+            MainMenuButton.Margin = new Padding(3, 4, 3, 4);
             MainMenuButton.Name = "MainMenuButton";
-            MainMenuButton.Size = new Size(122, 21);
+            MainMenuButton.Size = new Size(139, 28);
             MainMenuButton.TabIndex = 0;
             MainMenuButton.Text = "Main Menu";
             MainMenuButton.UseVisualStyleBackColor = true;
@@ -49,9 +50,10 @@
             // 
             // StudySetsButton
             // 
-            StudySetsButton.Location = new Point(12, 12);
+            StudySetsButton.Location = new Point(14, 16);
+            StudySetsButton.Margin = new Padding(3, 4, 3, 4);
             StudySetsButton.Name = "StudySetsButton";
-            StudySetsButton.Size = new Size(122, 22);
+            StudySetsButton.Size = new Size(139, 29);
             StudySetsButton.TabIndex = 1;
             StudySetsButton.Text = "Back to Study Sets";
             StudySetsButton.UseVisualStyleBackColor = true;
@@ -61,43 +63,53 @@
             // 
             SingleStudySetLabel.AutoSize = true;
             SingleStudySetLabel.Font = new Font("SimSun", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            SingleStudySetLabel.Location = new Point(336, 12);
+            SingleStudySetLabel.Location = new Point(384, 16);
             SingleStudySetLabel.Name = "SingleStudySetLabel";
-            SingleStudySetLabel.Size = new Size(222, 27);
+            SingleStudySetLabel.Size = new Size(267, 34);
             SingleStudySetLabel.TabIndex = 3;
             SingleStudySetLabel.Text = "Your Study Set";
             // 
             // IndividualStudySetDataGrid
             // 
+            IndividualStudySetDataGrid.AllowUserToOrderColumns = true;
+            IndividualStudySetDataGrid.AllowUserToResizeColumns = false;
+            IndividualStudySetDataGrid.AllowUserToResizeRows = false;
             IndividualStudySetDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             IndividualStudySetDataGrid.Columns.AddRange(new DataGridViewColumn[] { Terms, Definitions });
-            IndividualStudySetDataGrid.Location = new Point(140, 55);
+            IndividualStudySetDataGrid.Location = new Point(160, 73);
+            IndividualStudySetDataGrid.Margin = new Padding(3, 4, 3, 4);
+            IndividualStudySetDataGrid.MultiSelect = false;
             IndividualStudySetDataGrid.Name = "IndividualStudySetDataGrid";
-            IndividualStudySetDataGrid.Size = new Size(713, 394);
+            IndividualStudySetDataGrid.RowHeadersWidth = 51;
+            IndividualStudySetDataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            IndividualStudySetDataGrid.Size = new Size(815, 525);
             IndividualStudySetDataGrid.TabIndex = 4;
             // 
             // Terms
             // 
             Terms.HeaderText = "Terms";
+            Terms.MinimumWidth = 6;
             Terms.Name = "Terms";
             Terms.Width = 250;
             // 
             // Definitions
             // 
             Definitions.HeaderText = "Definitions";
+            Definitions.MinimumWidth = 6;
             Definitions.Name = "Definitions";
-            Definitions.Width = 450;
+            Definitions.Width = 500;
             // 
             // IndividualStudySet
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(924, 461);
+            ClientSize = new Size(1056, 615);
             Controls.Add(IndividualStudySetDataGrid);
             Controls.Add(SingleStudySetLabel);
             Controls.Add(StudySetsButton);
             Controls.Add(MainMenuButton);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "IndividualStudySet";
             Text = "Individual Study Set";
             Load += IndividualStudySet_Load;

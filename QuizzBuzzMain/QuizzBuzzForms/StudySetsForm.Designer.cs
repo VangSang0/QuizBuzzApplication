@@ -48,10 +48,9 @@
             // 
             // BackButton
             // 
-            BackButton.Location = new Point(10, 14);
-            BackButton.Margin = new Padding(3, 2, 3, 2);
+            BackButton.Location = new Point(11, 19);
             BackButton.Name = "BackButton";
-            BackButton.Size = new Size(142, 22);
+            BackButton.Size = new Size(162, 29);
             BackButton.TabIndex = 0;
             BackButton.Text = "Back To Menu";
             BackButton.UseVisualStyleBackColor = true;
@@ -61,18 +60,17 @@
             // 
             YourStudySetLabel.AutoSize = true;
             YourStudySetLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            YourStudySetLabel.Location = new Point(374, 14);
+            YourStudySetLabel.Location = new Point(427, 19);
             YourStudySetLabel.Name = "YourStudySetLabel";
-            YourStudySetLabel.Size = new Size(179, 32);
+            YourStudySetLabel.Size = new Size(223, 41);
             YourStudySetLabel.TabIndex = 2;
             YourStudySetLabel.Text = "Your Study Sets";
             // 
             // SelectButton
             // 
-            SelectButton.Location = new Point(575, 352);
-            SelectButton.Margin = new Padding(3, 2, 3, 2);
+            SelectButton.Location = new Point(657, 469);
             SelectButton.Name = "SelectButton";
-            SelectButton.Size = new Size(147, 22);
+            SelectButton.Size = new Size(168, 29);
             SelectButton.TabIndex = 3;
             SelectButton.Text = "Select";
             SelectButton.UseVisualStyleBackColor = true;
@@ -82,11 +80,10 @@
             // StudySetListView
             // 
             StudySetListView.Columns.AddRange(new ColumnHeader[] { StudySetsColumn });
-            StudySetListView.Location = new Point(262, 62);
-            StudySetListView.Margin = new Padding(3, 2, 3, 2);
+            StudySetListView.Location = new Point(337, 78);
             StudySetListView.MultiSelect = false;
             StudySetListView.Name = "StudySetListView";
-            StudySetListView.Size = new Size(409, 280);
+            StudySetListView.Size = new Size(467, 372);
             StudySetListView.TabIndex = 4;
             StudySetListView.UseCompatibleStateImageBehavior = false;
             StudySetListView.View = View.Details;
@@ -98,10 +95,9 @@
             // 
             // DeleteButton
             // 
-            DeleteButton.Location = new Point(399, 352);
-            DeleteButton.Margin = new Padding(3, 2, 3, 2);
+            DeleteButton.Location = new Point(456, 469);
             DeleteButton.Name = "DeleteButton";
-            DeleteButton.Size = new Size(147, 22);
+            DeleteButton.Size = new Size(168, 29);
             DeleteButton.TabIndex = 5;
             DeleteButton.Text = "Delete";
             DeleteButton.UseVisualStyleBackColor = true;
@@ -110,10 +106,9 @@
             // 
             // EditNameButton
             // 
-            EditNameButton.Location = new Point(223, 352);
-            EditNameButton.Margin = new Padding(3, 2, 3, 2);
+            EditNameButton.Location = new Point(255, 469);
             EditNameButton.Name = "EditNameButton";
-            EditNameButton.Size = new Size(147, 22);
+            EditNameButton.Size = new Size(168, 29);
             EditNameButton.TabIndex = 6;
             EditNameButton.Text = "Edit Study Set Name";
             EditNameButton.UseVisualStyleBackColor = true;
@@ -122,10 +117,9 @@
             // 
             // CreateStudySetButton
             // 
-            CreateStudySetButton.Location = new Point(81, 170);
-            CreateStudySetButton.Margin = new Padding(3, 2, 3, 2);
+            CreateStudySetButton.Location = new Point(93, 227);
             CreateStudySetButton.Name = "CreateStudySetButton";
-            CreateStudySetButton.Size = new Size(161, 22);
+            CreateStudySetButton.Size = new Size(184, 29);
             CreateStudySetButton.TabIndex = 7;
             CreateStudySetButton.Text = "Create New Study Set";
             CreateStudySetButton.UseVisualStyleBackColor = true;
@@ -135,26 +129,28 @@
             // 
             NewStudySetLabel.AutoSize = true;
             NewStudySetLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            NewStudySetLabel.Location = new Point(12, 204);
+            NewStudySetLabel.Location = new Point(14, 272);
             NewStudySetLabel.Name = "NewStudySetLabel";
-            NewStudySetLabel.Size = new Size(234, 17);
+            NewStudySetLabel.Size = new Size(308, 23);
             NewStudySetLabel.TabIndex = 8;
             NewStudySetLabel.Text = "What is the Name of the new Study set";
             NewStudySetLabel.Visible = false;
             // 
             // NewStudySetNameInput
             // 
-            NewStudySetNameInput.Location = new Point(31, 224);
+            NewStudySetNameInput.Location = new Point(35, 299);
+            NewStudySetNameInput.Margin = new Padding(3, 4, 3, 4);
             NewStudySetNameInput.Name = "NewStudySetNameInput";
-            NewStudySetNameInput.Size = new Size(211, 23);
+            NewStudySetNameInput.Size = new Size(241, 27);
             NewStudySetNameInput.TabIndex = 9;
             NewStudySetNameInput.Visible = false;
             // 
             // CancelNewSetButton
             // 
-            CancelNewSetButton.Location = new Point(167, 253);
+            CancelNewSetButton.Location = new Point(191, 337);
+            CancelNewSetButton.Margin = new Padding(3, 4, 3, 4);
             CancelNewSetButton.Name = "CancelNewSetButton";
-            CancelNewSetButton.Size = new Size(75, 23);
+            CancelNewSetButton.Size = new Size(86, 31);
             CancelNewSetButton.TabIndex = 10;
             CancelNewSetButton.Text = "Cancel";
             CancelNewSetButton.UseVisualStyleBackColor = true;
@@ -163,9 +159,10 @@
             // 
             // CreateButton
             // 
-            CreateButton.Location = new Point(31, 253);
+            CreateButton.Location = new Point(35, 337);
+            CreateButton.Margin = new Padding(3, 4, 3, 4);
             CreateButton.Name = "CreateButton";
-            CreateButton.Size = new Size(92, 23);
+            CreateButton.Size = new Size(105, 31);
             CreateButton.TabIndex = 11;
             CreateButton.Text = "Create";
             CreateButton.UseVisualStyleBackColor = true;
@@ -175,26 +172,28 @@
             // EditNewNameLabel
             // 
             EditNewNameLabel.AutoSize = true;
-            EditNewNameLabel.Location = new Point(179, 386);
+            EditNewNameLabel.Location = new Point(205, 515);
             EditNewNameLabel.Name = "EditNewNameLabel";
-            EditNewNameLabel.Size = new Size(220, 15);
+            EditNewNameLabel.Size = new Size(277, 20);
             EditNewNameLabel.TabIndex = 12;
             EditNewNameLabel.Text = "What did you want the new name to be?";
             EditNewNameLabel.Visible = false;
             // 
             // EditNewNameTextBox
             // 
-            EditNewNameTextBox.Location = new Point(192, 404);
+            EditNewNameTextBox.Location = new Point(219, 539);
+            EditNewNameTextBox.Margin = new Padding(3, 4, 3, 4);
             EditNewNameTextBox.Name = "EditNewNameTextBox";
-            EditNewNameTextBox.Size = new Size(186, 23);
+            EditNewNameTextBox.Size = new Size(212, 27);
             EditNewNameTextBox.TabIndex = 13;
             EditNewNameTextBox.Visible = false;
             // 
             // ConfirmEditButton
             // 
-            ConfirmEditButton.Location = new Point(192, 433);
+            ConfirmEditButton.Location = new Point(219, 577);
+            ConfirmEditButton.Margin = new Padding(3, 4, 3, 4);
             ConfirmEditButton.Name = "ConfirmEditButton";
-            ConfirmEditButton.Size = new Size(75, 23);
+            ConfirmEditButton.Size = new Size(86, 31);
             ConfirmEditButton.TabIndex = 14;
             ConfirmEditButton.Text = "Confirm";
             ConfirmEditButton.UseVisualStyleBackColor = true;
@@ -203,9 +202,10 @@
             // 
             // CancelEditButton
             // 
-            CancelEditButton.Location = new Point(295, 433);
+            CancelEditButton.Location = new Point(337, 577);
+            CancelEditButton.Margin = new Padding(3, 4, 3, 4);
             CancelEditButton.Name = "CancelEditButton";
-            CancelEditButton.Size = new Size(75, 23);
+            CancelEditButton.Size = new Size(86, 31);
             CancelEditButton.TabIndex = 15;
             CancelEditButton.Text = "Cancel";
             CancelEditButton.UseVisualStyleBackColor = true;
@@ -214,10 +214,10 @@
             // 
             // StudySetsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(919, 488);
+            ClientSize = new Size(1050, 651);
             Controls.Add(CancelEditButton);
             Controls.Add(ConfirmEditButton);
             Controls.Add(EditNewNameTextBox);
@@ -234,7 +234,6 @@
             Controls.Add(YourStudySetLabel);
             Controls.Add(BackButton);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "StudySetsForm";
             Text = "StudySet Window";
             Load += StudySetsForm_Load;

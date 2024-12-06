@@ -137,6 +137,17 @@ namespace QuizzBuzzMain.Utilities
                 MessageBox.Show($"Error renaming study set: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
+        public void loadStudySetContentOnForm(DataGridView dataGrid, string studySetName)
+        {
+            Dictionary<string,string> studySet = studySetManager.LoadStudySetContent(studySetName);
+            dataGrid.Rows.Clear();
+
+            foreach (KeyValuePair<string, string> entry in studySet)
+            {
+                dataGrid.Rows.Add(entry.Key, entry.Value);
+            }
+        }
+
     }
 }

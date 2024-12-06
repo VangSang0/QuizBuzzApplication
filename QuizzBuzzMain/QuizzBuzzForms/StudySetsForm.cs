@@ -111,19 +111,20 @@ namespace QuizzBuzzMain.QuizzBuzzForms
 
         private void EditNameButton_Click(object sender, EventArgs e)
         {
+            EditNewNameLabel.Text = "Enter new name for study set:";
             EditNewNameLabel.Visible = true;
             EditNewNameTextBox.Visible = true;
             ConfirmEditButton.Visible = true;
             CancelEditButton.Visible = true;
             DeleteButton.Visible = false;
             SelectButton.Visible = false;
-
         }
 
         private void CancelEditButton_Click(object sender, EventArgs e)
         {
-            EditNewNameLabel.Text = "";
+            EditNewNameLabel.Text = "Enter New Name for Study Set:";
             EditNewNameLabel.Visible = false;
+            EditNewNameTextBox.Text = "";
             EditNewNameTextBox.Visible = false;
             ConfirmEditButton.Visible = false;
             CancelEditButton.Visible = false;

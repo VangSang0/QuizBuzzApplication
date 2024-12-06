@@ -23,6 +23,8 @@ namespace QuizzBuzzMain.QuizzBuzzForms
             formManager = new FormManager();
             studySetManager = new StudySetManager();
             SingleStudySetLabel.Text = item.Text;
+            //IndividualStudySetDataGrid.CellValueChanged += IndividualStudySetDataGrid_CellValueChanged;
+            //IndividualStudySetDataGrid.RowsRemoved += IndividualStudySetDataGrid_RowsRemoved;
         }
 
         private void StudySetsButton_Click(object sender, EventArgs e)
@@ -39,7 +41,23 @@ namespace QuizzBuzzMain.QuizzBuzzForms
 
         private void IndividualStudySet_Load(object sender, EventArgs e)
         {
+            string studySetName = SingleStudySetLabel.Text;
+            string studySetNamePath = studySetName + ".txt";
+            formManager.loadStudySetContentOnForm(IndividualStudySetDataGrid, studySetNamePath);
+            
+            IndividualStudySetDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            
+            IndividualStudySetDataGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
         }
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            string fileName = SingleStudySetLabel.Text + ".txt";
+            //SaveDataGridViewToFile(IndividualStudySetDataGrid, fileName);
+        }
+
+
+
     }
 }
