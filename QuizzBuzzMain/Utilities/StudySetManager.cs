@@ -13,7 +13,7 @@ namespace QuizzBuzzMain.Utilities
 
         public StudySetManager()
         {
-            StudySetsDirectory = @"C:\Users\vangs\Documents\ITCS3112\QuizBuzz\QuizBuzzApplication\QuizzBuzzMain\StudySets\"; // Path to the study sets directory from Sang's Personal Computer
+            StudySetsDirectory = @"C:\Users\vangs\Documents\3112\QuizBuzzApplication\QuizzBuzzMain\StudySets\"; // Path to the study sets directory from Sang's Personal Computer
 
             //Arbitrary path to the study sets directory
             //StudySetsDirectory = Path.Combine(
@@ -40,12 +40,13 @@ namespace QuizzBuzzMain.Utilities
             }
             return studySets;
         }
-        public void DeleteStudySet(string filename)
+        public async Task DeleteStudySetAsync(string filename)
         {
             try
             {
                 string fullPath = Path.Combine(StudySetsDirectory, filename);
                 File.Delete(fullPath);
+                await Task.CompletedTask;
             }
             catch (Exception ex)
             {
@@ -53,16 +54,24 @@ namespace QuizzBuzzMain.Utilities
             }
         }
 
-        public void CreateNewStudySet(string studySetName)
+        public async Task CreateNewStudySetAsync(string studySetName)
         {
-            // File name to save the study set folder
-            // File name with spaces are replaced with underscores
-            string fileName = studySetName.Replace(" ", "_") + ".txt";
-            string fullPath = Path.Combine(StudySetsDirectory, fileName);
+            try
+            {
+                string fullPath = Path.Combine(StudySetsDirectory, studySetName);
+                using (FileStream fs = File.Create(fullPath))
+                {
+                    await Task.CompletedTask; 
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("And error has Occurred:" , ex);
+            }
+
 
         }
 
-        // Load a specific study set
         public List<string> LoadStudySet(string filename)
         {
             try
@@ -72,8 +81,35 @@ namespace QuizzBuzzMain.Utilities
             }
             catch (Exception ex)
             {
-                // Log or handle the exception
                 throw new Exception($"Error loading study set: {ex.Message}", ex);
+            }
+        }
+
+        public async Task EditStudySetName(string oldFileName, string newFileName)
+        {
+            try
+            {
+                // Ensure new file name doesn't already exist
+                string oldFullPath = Path.Combine(StudySetsDirectory, oldFileName);
+                string newFullPath = Path.Combine(StudySetsDirectory, newFileName);
+
+                if (!File.Exists(oldFullPath))
+                {
+                    throw new FileNotFoundException("The file to be renamed does not exist.");
+                }
+
+                if (File.Exists(newFullPath))
+                {
+                    throw new IOException("A file with the new name already exists.");
+                }
+
+                
+                File.Move(oldFullPath, newFullPath);
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error renaming study set: {ex.Message}", ex);
             }
         }
     }

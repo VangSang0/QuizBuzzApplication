@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuizzBuzzMain.Utilities;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuizzBuzzMain.QuizzBuzzForms
 {
@@ -54,38 +55,118 @@ namespace QuizzBuzzMain.QuizzBuzzForms
         }
         private void StudySetListView_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            if (StudySetListView.SelectedItems.Count > 0)
+            if (StudySetListView.SelectedItems.Count > 0 && StudySetListView.Focused)
             {
                 ListViewItem selectedItem = StudySetListView.SelectedItems[0];
                 DeleteButton.Visible = true;
                 EditNameButton.Visible = true;
                 SelectButton.Visible = true;
             }
-            else if (StudySetListView.SelectedItems.Count == 0)
+            else
             {
                 DeleteButton.Visible = false;
                 EditNameButton.Visible = false;
                 SelectButton.Visible = false;
             }
-            //else
-            //{
-            //    throw new Exception("Invalid number of selected items");
-            //}
 
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            //if (StudySetListView.SelectedItems.Count > 0)
-            //{
-            //    ListViewItem selectedItem = StudySetListView.SelectedItems[0];
-            //    string studySetName = selectedItem.Text + ".txt";
-            //    StudySetListView.Items.Remove(selectedItem);
-            //    studySetManager.DeleteStudySet(studySetName);
-            //}
+
+            ListViewItem selectedItem = StudySetListView.SelectedItems[0];
+
+            _ = formManager.deleteStudySet(StudySetListView, selectedItem);
+
+        }
+
+        private void CreateStudySetButton_Click(object sender, EventArgs e)
+        {
+            NewStudySetLabel.Visible = true;
+            NewStudySetNameInput.Visible = true;
+            CancelNewSetButton.Visible = true;
+            CreateButton.Visible = true;
+        }
+
+        private void CancelNewSetButton_Click(object sender, EventArgs e)
+        {
+            NewStudySetNameInput.Text = "";
+            NewStudySetLabel.Visible = false;
+            NewStudySetNameInput.Visible = false;
+            CancelNewSetButton.Visible = false;
+            CreateButton.Visible = false;
+        }
+
+        private void CreateButton_Click(object sender, EventArgs e)
+        {
+            formManager.createNewStudySet(NewStudySetNameInput);
+            formManager.RefreshStudySets(StudySetListView);
+            NewStudySetNameInput.Text = "";
+            NewStudySetLabel.Visible = false;
+            NewStudySetNameInput.Visible = false;
+            CancelNewSetButton.Visible = false;
+            CreateButton.Visible = false;
+
+        }
+
+        private void EditNameButton_Click(object sender, EventArgs e)
+        {
+            EditNewNameLabel.Visible = true;
+            EditNewNameTextBox.Visible = true;
+            ConfirmEditButton.Visible = true;
+            CancelEditButton.Visible = true;
+            DeleteButton.Visible = false;
+            SelectButton.Visible = false;
+
+        }
+
+        private void CancelEditButton_Click(object sender, EventArgs e)
+        {
+            EditNewNameLabel.Text = "";
+            EditNewNameLabel.Visible = false;
+            EditNewNameTextBox.Visible = false;
+            ConfirmEditButton.Visible = false;
+            CancelEditButton.Visible = false;
+            DeleteButton.Visible = true;
+            SelectButton.Visible = true;
+        }
+
+        private void ConfirmEditButton_Click(object sender, EventArgs e)
+        {
+            if (StudySetListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a study set to rename.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            ListViewItem selectedItem = StudySetListView.SelectedItems[0];
+            string oldFileName = selectedItem.Text + ".txt";
+
+
+            // Use the TextBox for answer
+            string newEditName = EditNewNameTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(newEditName))
+            {
+                MessageBox.Show("New name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _ = formManager.editStudySet(StudySetListView, oldFileName, newEditName);
+            EditNewNameTextBox.Text = "";
+            EditNewNameLabel.Visible = false;
+            EditNewNameTextBox.Visible = false;
+            ConfirmEditButton.Visible = false;
+            CancelEditButton.Visible = false;
+            DeleteButton.Visible = true;
+            SelectButton.Visible = true;
+        }
+
+        private void SelectButton_Click(object sender, EventArgs e)
+        {
             ListViewItem selectedItem = StudySetListView.SelectedItems[0];
             DialogResult result = MessageBox.Show(
-                $"Are you sure you want to delete '{selectedItem.Text}'?",
+                $"Are you sure you want to enter '{selectedItem.Text}'?",
                 "Confirm Deletion",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
@@ -93,21 +174,13 @@ namespace QuizzBuzzMain.QuizzBuzzForms
 
             if (result == DialogResult.Yes)
             {
-                string studySetName = selectedItem.Text + ".txt";
-                StudySetListView.Items.Remove(selectedItem);
-                studySetManager.DeleteStudySet(studySetName);
-                formManager.RefreshStudySets(StudySetListView);
+                IndividualStudySet individualStudySet = new IndividualStudySet(selectedItem);
+                formManager.SwitchForm(QuizBuzzMain.MainPanel, individualStudySet);
             }
             else
             {
                 return;
             }
-
-        }
-
-        private void CreateStudySetButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
