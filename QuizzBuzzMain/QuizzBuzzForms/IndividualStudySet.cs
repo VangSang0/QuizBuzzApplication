@@ -1,4 +1,5 @@
-﻿using QuizzBuzzMain.Utilities;
+﻿using QuizzBuzzMain.QuizQuestion;
+using QuizzBuzzMain.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace QuizzBuzzMain.QuizzBuzzForms
     {
         private FormManager formManager;
         StudySetManager studySetManager;
+        ListViewItem currentStudySet;
         public IndividualStudySet(ListViewItem item)
         {
 
@@ -23,8 +25,7 @@ namespace QuizzBuzzMain.QuizzBuzzForms
             formManager = new FormManager();
             studySetManager = new StudySetManager();
             SingleStudySetLabel.Text = item.Text;
-            //IndividualStudySetDataGrid.CellValueChanged += IndividualStudySetDataGrid_CellValueChanged;
-            //IndividualStudySetDataGrid.RowsRemoved += IndividualStudySetDataGrid_RowsRemoved;
+            currentStudySet = item;
         }
 
         private void StudySetsButton_Click(object sender, EventArgs e)
@@ -44,20 +45,56 @@ namespace QuizzBuzzMain.QuizzBuzzForms
             string studySetName = SingleStudySetLabel.Text;
             string studySetNamePath = studySetName + ".txt";
             formManager.loadStudySetContentOnForm(IndividualStudySetDataGrid, studySetNamePath);
-            
+
             IndividualStudySetDataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-            
+
             IndividualStudySetDataGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
         }
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+
+        private void GenerateQuizButton_Click(object sender, EventArgs e)
         {
-            string fileName = SingleStudySetLabel.Text + ".txt";
-            //SaveDataGridViewToFile(IndividualStudySetDataGrid, fileName);
+            MultipleChoiceButton.Visible = true;
+            TrueFalseOption.Visible = true;
+            ConfrimQuizType.Visible = true;
+            CancelSelection.Visible = true;
         }
 
+        private void CancelSelection_Click(object sender, EventArgs e)
+        {
+            MultipleChoiceButton.Visible = false;
+            TrueFalseOption.Visible = false;
+            ConfrimQuizType.Visible = false;
+            CancelSelection.Visible = false;
+        }
 
+        private void ConfrimQuizType_Click(object sender, EventArgs e)
+        {
+            string studySetName = SingleStudySetLabel.Text;
+            string studySetPath = studySetName + ".txt";
+            List<IQuestionType> questionTypes = new List<IQuestionType>();
 
+            if (MultipleChoiceButton.Checked)
+            {
+                questionTypes = studySetManager.GenerateMultipleChoiceQuestions(studySetPath);
+
+            }
+            else if (TrueFalseOption.Checked)
+            {
+                {
+                    questionTypes = studySetManager.GenerateTrueFalseQuestions(studySetPath);
+                }
+            }
+
+            QuizForm quizForm = new QuizForm(questionTypes, currentStudySet);
+            formManager.SwitchForm(QuizBuzzMain.MainPanel, quizForm);
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            string studySetName = SingleStudySetLabel.Text;
+            studySetManager.SaveContentToFile(studySetName, IndividualStudySetDataGrid);
+        }
     }
 }

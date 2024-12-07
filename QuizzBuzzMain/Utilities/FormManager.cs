@@ -124,7 +124,6 @@ namespace QuizzBuzzMain.Utilities
 
             try
             {
-
                 _ = studySetManager.EditStudySetName(oldListViewName, fixedNewStudySetName);
                 await Task.CompletedTask;
 

@@ -37,9 +37,9 @@
             TitleLabel.AutoSize = true;
             TitleLabel.BackColor = Color.Transparent;
             TitleLabel.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            TitleLabel.Location = new Point(359, 104);
+            TitleLabel.Location = new Point(314, 78);
             TitleLabel.Name = "TitleLabel";
-            TitleLabel.Size = new Size(311, 38);
+            TitleLabel.Size = new Size(242, 30);
             TitleLabel.TabIndex = 0;
             TitleLabel.Text = "Welcome To QuizBuzz";
             // 
@@ -47,9 +47,10 @@
             // 
             ViewStudyButton.BackColor = SystemColors.ActiveCaption;
             ViewStudyButton.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ViewStudyButton.Location = new Point(414, 383);
+            ViewStudyButton.Location = new Point(362, 287);
+            ViewStudyButton.Margin = new Padding(3, 2, 3, 2);
             ViewStudyButton.Name = "ViewStudyButton";
-            ViewStudyButton.Size = new Size(198, 63);
+            ViewStudyButton.Size = new Size(173, 47);
             ViewStudyButton.TabIndex = 1;
             ViewStudyButton.Text = "View Study Sets";
             ViewStudyButton.UseVisualStyleBackColor = false;
@@ -57,12 +58,13 @@
             // 
             // MainMenuForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1050, 650);
+            ClientSize = new Size(919, 488);
             Controls.Add(ViewStudyButton);
             Controls.Add(TitleLabel);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "MainMenuForm";
             Text = "Form1";
             ResumeLayout(false);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
+using QuizzBuzzMain.QuizQuestion;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,7 @@ namespace QuizzBuzzMain.Utilities
 
         public StudySetManager()
         {
-            StudySetsDirectory = @"C:\Users\vangs\Documents\ITCS3112\QuizBuzz\QuizBuzzApplication\QuizzBuzzMain\StudySets\"; // Path to the study sets directory from Sang's Personal Computer
+            StudySetsDirectory = @"C:\Users\vangs\Documents\3112\QuizBuzzApplication\QuizzBuzzMain\StudySets\"; // Path to the study sets directory from Sang's Personal Computer
 
             //Arbitrary path to the study sets directory
             //StudySetsDirectory = Path.Combine(
@@ -131,5 +132,77 @@ namespace QuizzBuzzMain.Utilities
                 throw new Exception($"Error loading study set: {ex.Message}", ex);
             }
         }
+
+        public void SaveContentToFile(string studySetName, DataGridView dataGridView)
+        {
+            try
+            {
+                string studySetPath = studySetName + ".txt";
+                List<string> content = new List<string>();
+
+                foreach (DataGridViewRow row in dataGridView.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    string? key = row.Cells[0].Value?.ToString();
+                    string? value = row.Cells[1].Value?.ToString();
+
+                    if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value))
+                    {
+                        content.Add($"{key},{value}");
+                    }
+                }
+                
+                File.WriteAllLines(Path.Combine(StudySetsDirectory, studySetPath), content);
+                MessageBox.Show("Content saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving content: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public List<IQuestionType> GenerateMultipleChoiceQuestions(string filename)
+        {
+            var questions = new List<IQuestionType>();
+            var studySet = LoadStudySetContent(filename);
+
+            foreach (var entry in studySet)
+            {
+                var options = studySet.Values.OrderBy(x => Guid.NewGuid()).Take(3).ToList(); 
+                options.Add(entry.Value); 
+                options = options.OrderBy(x => Guid.NewGuid()).ToList(); 
+
+                questions.Add(new MultipleChoiceQuestion
+                {
+                    QuestionText = $"What is '{entry.Key}'?",
+                    Options = options,
+                    CorrectAnswer = entry.Value
+                });
+            }
+
+            return questions.Take(10).ToList(); 
+        }
+
+        public List<IQuestionType> GenerateTrueFalseQuestions(string filename)
+        {
+            var questions = new List<IQuestionType>();
+            var studySet = LoadStudySetContent(filename);
+
+            foreach (var entry in studySet)
+            {
+                bool isCorrect = new Random().Next(0, 2) == 1;
+                string displayedAnswer = isCorrect ? entry.Value : studySet.Values.OrderBy(x => Guid.NewGuid()).First();
+
+                questions.Add(new TrueFalseQuestions
+                {
+                    QuestionText = $"Is the definition of '{entry.Key}' '{displayedAnswer}'?",
+                    CorrectAnswer = isCorrect
+                });
+            }
+
+            return questions.Take(10).ToList();
+        }
+
     }
 }
